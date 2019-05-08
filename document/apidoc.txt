@@ -1,0 +1,166 @@
+apidoc
+/blog/api/v1
+http://api.yourservice.com/v1/companies/34/employees
+active = 0 is delete
+active = 1 is active
+active = 2 is inactive
+
+=================================== PRODUCT ===================================
+
+[GET] /product
+- description: get all list of product (active != 0)
+
+[GET] /product/:id
+- description: get product by id
+
+[POST] /product/add
+- description: add product
+- data: {}
+- response: { status: 'S', message: 'add product success' }
+
+[PUT] /product/{:id}/edit
+- description: edit product by id
+- data: {}
+- response: { status: 'S', message: 'update product success' }
+
+[DELETE] /product/{:id}/delete
+- delete product by id
+- data:
+- response: { status: 'S', message: 'delete product success' }
+
+[GET] /product?offset=10&limit=5
+- paging product default: offset=0&limit=20
+
+=================================== END PRODUCT ===================================
+
+
+
+=================================== LOCATION ===================================
+
+[GET] /location
+- description: get all list of location (active != 0)
+
+[GET] /location/:id
+- description: get location by id
+
+[POST] /location/add
+- description: add location
+- data: {}
+- response: { status: 'S', message: 'add location success' }
+
+[PUT] /location/{:id}/edit
+- description: edit location by id
+- data: {}
+- response: { status: 'S', message: 'update location success' }
+
+[DELETE] /location/{:id}/delete
+- delete location by id
+- data:
+- response: { status: 'S', message: 'delete location success' }
+
+[GET] /location?offset=10&limit=5
+- paging location default: offset=0&limit=20
+
+=================================== END LOCATION ===================================
+
+
+
+=================================== PURCHASE ===================================
+
+SP_PURCHASE: GET_ALL, GET_BY_ID, ADD_FIRST, ADD_DETAIL, EDIT_MASTER, EDIT_DETAIL, DELETE_MASTER, DELETE_DETAIL
+
+
+[GET] /purchase
+- description: get all list of purchase (active != 0)
+
+[GET] /purchase/:id
+- description: get purchase by id
+
+[POST] /purchase/add
+- description: add purchase
+			   1) when user select this purchase and select product will be saved (first master & first detail).
+			   2) when user select product again willbe saved (detail).
+
+- data: {}
+- response: { status: 'S', message: 'add purchase success' }
+
+
+
+[PUT] /location/{:id}/edit
+- description: edit location by id
+- data: {}
+- response: { status: 'S', message: 'update location success' }
+
+[DELETE] /location/{:id}/delete
+- delete location by id
+- data:
+- response: { status: 'S', message: 'delete location success' }
+
+[GET] /location?offset=10&limit=5
+- paging location default: offset=0&limit=20
+
+=================================== END PURCHASE ===================================
+
+
+=================================== ORDERS ===================================
+
+SP_ORDERS: GET_ALL, GET_BY_ID, GET_DETAIL, ADD_FIRST, ADD_DETAIL, EDIT_MASTER, EDIT_DETAIL, DELETE_MASTER, DELETE_DETAIL
+
+
+[GET] /orders
+- description: get all list of orders (active != 0)
+
+[GET] /orders/:id
+- description: get orders by id
+
+[GET] /orders/{:id}/form
+- description: get orders and product in this id
+
+[POST] /orders/add
+- description: add orders
+			   1) when user select this orders and select product will be saved (first master & first detail) use action "ADD_FIRST".
+			   2) when user select product again will be saved (detail) use action "ADD_DETAIL".
+
+- data: {}
+- response: { status: 'S', message: 'add orders success' }
+
+
+[PUT] /orders/{:id}/edit
+- description: edit orders by id
+- data: {}
+- response: { status: 'S', message: 'update orders success' }
+
+[DELETE] /orders/{:id}/delete
+- description: delete orders by id use action "DELETE_MASTER"
+			   delete orders detail by id_ordes_detail use action "DELETE_DETAIL"
+- data:
+- response: { status: 'S', message: 'delete orders success' }
+
+[GET] /orders?offset=10&limit=5
+- paging orders default: offset=0&limit=20
+
+=================================== END PURCHASE ===================================
+
+
+
+
+
+=================================== STOCK ===================================
+
+[GET] /stock
+- description: get all list of products are active (active = 1) in stock
+
+[GET] /stock/location?id_product=?
+- description: get location and stock by id_product
+
+[POST] /stock/add
+- description: add product into stock (select location too) action = "ADD_STOCK"
+- data: {}
+- response: { status: 'S', message: 'add location success' }
+
+[POST] /stock/edit
+- description: add product into stock (select location too) action = "EDIT_STOCK"
+- data: {}
+- response: { status: 'S', message: 'add location success' }
+
+=================================== END STOCK ===================================
